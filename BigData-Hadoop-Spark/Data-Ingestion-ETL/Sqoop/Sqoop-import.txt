@@ -1,0 +1,31 @@
+$ mysql -u root -p
+Enter password:
+
+mysql> create database test DB;
+mysql> use testDB
+Database changed
+
+mysql> insert into student values(1,'Archana');
+mysql> insert into student values(2, 'Ravi');
+mysql> insert into student values(3, 'Ahmed');
+
+mysql> select *
+
++-----+-------+
+| Id  | name  |
++-----+-------+
+| 1   |Archana|
+| 2   |Ravi   |
+| 3   |Ahmed  |
++-----+-------+
+
+mysql>exit
+
+// import to sqoop
+$ sqoop import --connect jdbc:mysql://localhost/testDB --username labuser --password simplilearn -- table student --m 1
+
+// to verify
+$ hdfs dfs -ls -R student
+
+// to open file
+$ hdfs dfs -cat student/part-m-0000
